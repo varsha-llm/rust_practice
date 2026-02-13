@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::io;
 
 fn main() {
     //find vector median an mode
@@ -13,6 +14,7 @@ fn main() {
 
     let Original_String=String::from("first");
     PigLatin(Original_String);
+    text_interface();
 
 }
 
@@ -82,4 +84,23 @@ fn PigLatin(Text:String){
     println!("The piglatin version of given input string is {resultant_string}");
 
 
+}
+
+fn text_interface(){
+    let mut department_details:HashMap<String, Vec<String>>=HashMap::new();
+    for i in 0..4{
+         let mut user_input=String::new();
+         io::stdin().read_line(&mut user_input).expect("not able to read the line");
+        //  for word in user_input.split_whitespace(){
+        //     user_input
+        //  }
+        let mut Vector:Vec<String>=Vec::new();
+        for word in user_input.split_whitespace(){
+            Vector.push(word.to_string());
+        }
+        let count:&mut Vec<String>=department_details.entry(Vector[3].clone()).or_insert(Vec::new());
+        count.push(Vector[1].clone());
+        
+    }
+    println!("{department_details:?}");
 }
